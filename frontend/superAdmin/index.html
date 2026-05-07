@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>FlagSys — Super Admin</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&family=Syne:wght@400;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="index.css"/>
+</head>
+<body>
+<div id="app">
+  <!-- Login Screen -->
+  <div id="login-screen">
+    <div class="login-box fade-in">
+      <div class="login-badge">SUPER ADMIN CONSOLE</div>
+      <h1 class="login-title">FlagSys<br/>Control Plane</h1>
+      <p class="login-sub">Restricted access · Authorized personnel only</p>
+      <div id="login-error" class="error-msg" style="display:none"></div>
+      <label>EMAIL ADDRESS</label>
+      <input type="email" id="login-email" value="superadmin@example.com" autocomplete="off"/>
+      <label>PASSWORD</label>
+      <input type="password" id="login-password" value="superadmin@123"/>
+      <button class="btn" onclick="doLogin()">AUTHENTICATE →</button>
+    </div>
+  </div>
+
+  <!-- Dashboard Screen -->
+  <div id="dashboard-screen">
+    <header>
+      <div class="header-left">
+        <div class="logo">Flag<span>Sys</span></div>
+        <div class="role-chip">SUPER ADMIN</div>
+      </div>
+      <button class="logout-btn" onclick="doLogout()">[ LOGOUT ]</button>
+    </header>
+    <div class="main">
+      <!-- Stats -->
+      <div class="stats-row">
+        <div class="stat-card">
+          <div class="stat-number" id="stat-orgs">—</div>
+          <div class="stat-label">Organizations</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-number" id="stat-admins">—</div>
+          <div class="stat-label">Org Admins</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-number" id="stat-flags">—</div>
+          <div class="stat-label">Total Flags</div>
+        </div>
+      </div>
+
+      <!-- Create Org -->
+      <div class="create-panel">
+        <div class="section-header" style="margin-bottom:1.5rem">
+          <div class="section-title">Create Organization</div>
+        </div>
+        <div id="create-error" class="error-msg" style="display:none"></div>
+        <div class="form-row">
+          <div>
+            <label>ORGANIZATION NAME</label>
+            <input type="text" id="org-name" placeholder="e.g. Acme Corp"/>
+          </div>
+          <div>
+            <label>DESCRIPTION (OPTIONAL)</label>
+            <input type="text" id="org-desc" placeholder="e.g. Primary enterprise client"/>
+          </div>
+        </div>
+        <button class="btn" style="width:auto;padding:0.75rem 2rem" onclick="createOrg()">+ CREATE ORGANIZATION</button>
+      </div>
+
+      <!-- Org List -->
+      <div class="section-header">
+        <div class="section-title">Organizations</div>
+        <button class="logout-btn" onclick="loadOrgs()">↺ REFRESH</button>
+      </div>
+      <div id="orgs-container">
+        <div class="loading">Loading organizations...</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div id="toast" class="success-toast"></div>
+<script src="index.js"></script>
+
+
+</body>
+</html>

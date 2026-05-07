@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>FlagSys — Admin Portal</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=DM+Sans:wght@400;500;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="index.css"/>
+</head>
+<body>
+<div id="app">
+
+  <!-- Auth Screen -->
+  <div id="auth-screen" class="auth-screen">
+    <div class="auth-card animate-in">
+      <div class="auth-logo">Flag<span>Sys</span></div>
+      <div class="auth-subtitle">Organization Admin Portal</div>
+
+      <div class="auth-tabs">
+        <div class="auth-tab active" id="tab-login" onclick="switchTab('login')">Sign In</div>
+        <div class="auth-tab" id="tab-signup" onclick="switchTab('signup')">Create Account</div>
+      </div>
+
+      <!-- Login Form -->
+      <div id="login-form">
+        <div id="login-error" class="alert alert-error" style="display:none"></div>
+        <label>EMAIL</label>
+        <input type="email" id="login-email" placeholder="admin@company.com"/>
+        <label>PASSWORD</label>
+        <input type="password" id="login-password" placeholder="••••••••"/>
+        <button class="btn btn-full" onclick="doLogin()">Sign In</button>
+      </div>
+
+      <!-- Signup Form -->
+      <div id="signup-form" style="display:none">
+        <div id="signup-error" class="alert alert-error" style="display:none"></div>
+        <div id="signup-success" class="alert alert-success" style="display:none"></div>
+        <label>FULL NAME</label>
+        <input type="text" id="signup-name" placeholder="Jane Smith"/>
+        <label>EMAIL</label>
+        <input type="email" id="signup-email" placeholder="admin@company.com"/>
+        <label>PASSWORD</label>
+        <input type="password" id="signup-password" placeholder="Min 6 characters"/>
+        <label>ORGANIZATION</label>
+        <select id="signup-org">
+          <option value="">Loading organizations...</option>
+        </select>
+        <button class="btn btn-full" onclick="doSignup()">Create Account</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Dashboard Screen -->
+  <div id="dashboard-screen">
+    <header>
+      <div class="header-left">
+        <div class="logo">Flag<span>Sys</span></div>
+        <div class="org-badge" id="header-org">—</div>
+      </div>
+      <div class="user-info">
+        <span class="user-name" id="header-name">—</span>
+        <button class="btn btn-ghost btn-sm" onclick="doLogout()">Logout</button>
+      </div>
+    </header>
+
+    <main>
+      <h1 class="page-title">Feature Flags</h1>
+      <p class="page-desc" id="page-desc">Manage feature flags for your organization</p>
+
+      <!-- Create Flag -->
+      <div class="create-form">
+        <div class="form-title">➕ New Feature Flag</div>
+        <div id="create-error" class="alert alert-error" style="display:none"></div>
+        <div class="form-row">
+          <div>
+            <label>FLAG KEY</label>
+            <input type="text" id="flag-key" placeholder="e.g. new_checkout_flow"/>
+          </div>
+          <div>
+            <label>DESCRIPTION</label>
+            <input type="text" id="flag-desc" placeholder="What does this flag control?"/>
+          </div>
+        </div>
+        <div class="form-actions">
+          <button class="btn" onclick="createFlag()">Create Flag</button>
+          <span style="font-size:0.75rem;color:var(--muted)">Keys: lowercase, numbers, underscores only</span>
+        </div>
+      </div>
+
+      <!-- Flags List -->
+      <div class="flags-header">
+        <div class="form-title" style="margin:0">All Flags</div>
+        <div class="flags-count" id="flags-count"></div>
+      </div>
+      <div id="flags-container">
+        <div class="empty-state"><div class="empty-icon">⏳</div><p>Loading flags...</p></div>
+      </div>
+    </main>
+  </div>
+</div>
+<div id="toast" class="toast"></div>
+
+<script src="index.js"></script>
+</body>
+</html>

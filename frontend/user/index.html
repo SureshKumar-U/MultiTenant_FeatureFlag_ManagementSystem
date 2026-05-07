@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>FlagSys — Feature Check</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Outfit:wght@300;400;600;700;900&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="index.css" />
+</head>
+
+<body>
+    <div class="container">
+        <div class="brand">
+            <div class="brand-name">Flag<span>Sys</span></div>
+            <div class="brand-tag">Feature Flag Checker</div>
+        </div>
+
+        <div class="card">
+            <div class="card-header">
+                <div class="card-title">Check Feature Status</div>
+                <div class="card-sub">Query whether a feature is enabled for your organization</div>
+            </div>
+            <div class="card-body">
+                <label>Organization</label>
+                <select id="org-select">
+                    <option value="">Select an organization...</option>
+                </select>
+
+                <label>Feature Key</label>
+                <div class="feature-key-row">
+                    <input type="text" id="feature-key" placeholder="e.g. new_checkout_flow" autocomplete="off"
+                        spellcheck="false" />
+                    <div class="key-hint">// lowercase_snake_case</div>
+                </div>
+
+                <div class="presets" id="presets-row" style="display:none">
+                    <div style="font-size:0.7rem;color:var(--muted);width:100%;margin-bottom:0.2rem">Quick check:</div>
+                </div>
+
+                <button class="check-btn" id="check-btn" onclick="checkFlag()">Check Feature</button>
+
+                <div class="result" id="result-box">
+                    <div class="result-inner">
+                        <div class="result-icon" id="result-icon"></div>
+                        <div class="result-info">
+                            <div class="result-status" id="result-status"></div>
+                            <div class="result-detail" id="result-detail"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Check History -->
+        <div class="history-section" id="history-section" style="display:none">
+            <div class="history-title">Recent Checks</div>
+            <div id="history-list"></div>
+        </div>
+    </div>
+
+    <footer>FlagSys v1.0 · Feature Flag Management System</footer>
+   <script src="index.js"></script>
+  
+</body>
+
+</html>
